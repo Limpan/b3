@@ -1,7 +1,12 @@
 <p>sheet works!</p>
 
 <ul>
-    <li *ngFor="let row of rows">
-        <app-row [row]="row"></app-row>
+    <li *ngFor="let sheet of sheets">
+        {{sheet.id}}
+        <ul>
+            <li *ngFor="let row of sheet.rows">
+                <app-row [row]="row"></app-row>
+            </li>
+        </ul>
     </li>
 </ul>

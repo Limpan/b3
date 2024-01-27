@@ -1,13 +1,19 @@
 import random
 import click
 
-def register(app):
-    @app.cli.command()
-    def init():
-        """Add fake data"""
+@click.group()
+def cli():
+    pass
 
-        from bytardag.models import Sheet, Row
-        from bytardag import db
+
+@cli.command()
+def init():
+    """Add fake data"""
+
+    from bytardag.models import Sheet, Row
+    from bytardag.database import SessionLocal
+
+    with SessionLocal() as session:
 
         name_offset = random.randint(10, 100)
 
@@ -18,7 +24,7 @@ def register(app):
             rows = [Row(seller=random.choice(SELLER_IDS), amount=random.choice(AMOUNTS)) for _ in range(random.randint(3, 10))]
             sheet = Sheet(name=f'{name_offset+i}', rows=rows)
 
-            db.session.add(sheet)
+            session.add(sheet)
 
-        db.session.commit()
+        session.commit()
         click.echo('Added new sheets with fake data.')

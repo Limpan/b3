@@ -22,11 +22,12 @@ class SheetBase(BaseModel):
 
 
 class SheetCreate(SheetBase):
-    pass
+    rows: list[RowCreate]
 
 
 class Sheet(SheetBase):
     id: int
+    rows: list[Row]
 
     class Config:
         from_attributes = True

@@ -6,6 +6,9 @@ authors = ["Linus Törngren <linus@etnolit.se>"]
 readme = "README.md"
 packages = [{include = "bytardag", from = "src"}]
 
+[tool.poetry.scripts]
+bytardag = 'bytardag.console:cli'
+
 [tool.poetry.dependencies]
 python = "^3.11"
 python-jose-cryptodome = "^1.3.2"
@@ -15,6 +18,10 @@ pendulum = "^3.0.0"
 alembic = "^1.13.1"
 fastapi = "^0.109.0"
 uvicorn = {extras = ["standard"], version = "^0.26.0"}
+secure = "^0.3.0"
+pyjwt = "^2.8.0"
+pydantic = "^2.5.3"
+python-dotenv = "^1.0.1"
 
 
 [build-system]

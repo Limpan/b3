@@ -1,15 +1,17 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { SheetsComponent } from './sheets/sheets.component';
-import { HttpClientModule } from '@angular/common/http';
+import { RouterModule, } from '@angular/router';
+import { PageLoaderComponent } from './shared/components/page-loader.component';
+import { AuthService } from '@auth0/auth0-angular';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HttpClientModule, RouterOutlet, RouterLink, RouterLinkActive, SheetsComponent],
+  imports: [CommonModule, RouterModule, PageLoaderComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'Eksjö Klädbytardag';
+  isAuth0Loading$ = this.authService.isLoading$;
+  
+  constructor(private authService: AuthService) {}
 }

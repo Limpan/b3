@@ -1,9 +1,7 @@
-<div class="max-w-2xl mx-auto">
-    <header class="bg-purple-500 text-purple-50">
-        <h1>{{title}}</h1>
-        <nav>
-            <a routerLink="/dashboard">Dashboard</a>
-        </nav>
-    </header>
+<div class="page-layout" *ngIf="isAuth0Loading$ | async; else auth0Loaded">
+    <app-page-loader></app-page-loader>
+  </div>
+  <ng-template #auth0Loaded>
     <router-outlet></router-outlet>
-</div>
+  </ng-template>
+  

@@ -1,0 +1,12 @@
+<app-page-layout>
+<ul>
+    <li *ngFor="let sheet of sheets">
+        {{sheet.id}}
+        <ul>
+            <li *ngFor="let row of sheet.rows">
+                <app-row [row]="row"></app-row>
+            </li>
+        </ul>
+    </li>
+</ul>
+</app-page-layout>

@@ -1,0 +1,9 @@
+<div class="ml-10 flex items-baseline space-x-4">
+    <app-nav-bar-link path="/" label="Home"></app-nav-bar-link>
+    <app-nav-bar-link path="/sheets" label="Sheets"></app-nav-bar-link>
+    <app-nav-bar-link path="/sheets/new" label="New Sheet"></app-nav-bar-link>
+    <ng-container *ngIf="isAuthenticated$ | async">
+      <app-nav-bar-link path="/dashboard" label="Dashboard"></app-nav-bar-link>
+      <app-nav-bar-link path="/admin" label="Admin"></app-nav-bar-link>
+    </ng-container>
+</div>

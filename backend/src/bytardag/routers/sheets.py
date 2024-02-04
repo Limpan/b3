@@ -1,12 +1,16 @@
+import logging
 from bytardag import models, schemas
 from bytardag.database import get_db
+from bytardag.dependencies import validate_token
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
+
+logger = logging.getLogger()
 
 router = APIRouter(
     prefix="/sheets",
     tags=["sheets"],
-    dependencies=[],
+    dependencies=[Depends(validate_token)],
     responses={404: {"description": "Not found"}},
 )
 
@@ -23,6 +27,8 @@ def create_sheet(sheet: schemas.SheetCreate, db: Session = Depends(get_db)):
 
 @router.get("/", response_model=list[schemas.Sheet])
 def read_sheets(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    logger.info("Reading sheets")
+
     sheets = db.query(models.Sheet).offset(skip).limit(limit).all()
     return sheets
 

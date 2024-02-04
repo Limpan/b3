@@ -1,0 +1,8 @@
+<div class="ml-10 flex items-baseline space-x-4">
+    <ng-container *ngIf="isAuthenticated$ | async; else unAuthenticated">
+        <app-logout-button></app-logout-button>
+    </ng-container>
+    <ng-template #unAuthenticated>
+        <app-login-button></app-login-button>
+    </ng-template>
+</div>

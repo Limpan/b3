@@ -4,10 +4,7 @@ from dotenv import load_dotenv
 
 logger = logging.getLogger()
 
-basedir = os.path.abspath(os.path.dirname(__file__))
-path = os.path.join(basedir, '.env')
-logger.info(f'Loading .env ({path})')
-load_dotenv(path)
+load_dotenv()
 
 
 class Config(object):

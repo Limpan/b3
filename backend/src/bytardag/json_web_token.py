@@ -4,10 +4,15 @@ import jwt
 from .config import Config
 from .exceptions import BadCredentialsException, UnableCredentialsException
 
+import logging
+logger = logging.getLogger()
+
 
 @dataclass
 class JsonWebToken:
     """Perform JSON Web Token (JWT) validation using PyJWT"""
+
+    logger.info("JWT message")
 
     jwt_access_token: str
     auth0_issuer_url: str = f"https://{Config.AUTH0_DOMAIN}/"

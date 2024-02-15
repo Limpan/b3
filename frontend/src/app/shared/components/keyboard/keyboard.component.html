@@ -1,0 +1,34 @@
+<div class="m-4 max-w-md">
+    @if (input.length === 0) {
+    <div class="grid grid-cols-4 grid-rows-5 gap-2">
+        @for(letter of letters; track letter) {
+        <button
+            class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow disabled:opacity-50 disabled:hover:bg-white"
+            [disabled]="!activeLetters.has(letter)" (click)="handleClickLetter(letter)">
+            {{ letter }}
+        </button>
+        }
+    </div>
+    }
+    @else {
+    <div class="flex flex-col gap-2">
+        @for(value of alternatives; track value) {
+        <button
+            class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+            (click)="handleClickAlternative(value)">
+            {{ value }}
+        </button>
+        }
+        <div class="flex flex-row gap-2">
+            <div
+                class="w-1/4 bg-white text-gray-800 font-semibold py-2 px-4 border-b-2 border-gray-200 rounded text-center">
+                {{ input }}</div>
+            <button
+                class="w-3/4 bg-white hover:bg-gray-100 text-red-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+                (click)="handleReset()">
+                Cancel
+            </button>
+        </div>
+    </div>
+    }
+</div>

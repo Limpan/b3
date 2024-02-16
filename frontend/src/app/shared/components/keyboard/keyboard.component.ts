@@ -1,7 +1,7 @@
 import { Component, EventEmitter, HostListener, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-pro-keyboard',
+  selector: 'app-keyboard',
   standalone: true,
   imports: [],
   templateUrl: './keyboard.component.html'

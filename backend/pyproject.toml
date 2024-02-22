@@ -23,6 +23,7 @@ pyjwt = "^2.8.0"
 pydantic = "^2.5.3"
 python-dotenv = "^1.0.1"
 cryptography = "^42.0.1"
+gunicorn = "^22.0.0"
 
 
 [build-system]

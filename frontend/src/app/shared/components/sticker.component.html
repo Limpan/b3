@@ -1,0 +1,10 @@
+<div [attr.aria-hidden]="true" (click)="handleClick()" class="border shadow rounded w-24 max-w-24 relative overflow-hidden">
+    <div class="flex flex-row w-24">
+        <div class="p-2 bg-gray-100">{{ sticker?.seller }}</div>
+        <div class="p-2">{{ sticker?.amount }}&nbsp;<span class="text-gray-500">kr</span></div>
+    </div>
+    <!-- @if (active) {
+        <div class="bg-red-700 text-white p-2">X</div>
+    } -->
+    <div class="absolute w-8 h-full top-0 right-0 bg-red-700 translate-x-full p-2">X</div>
+</div>

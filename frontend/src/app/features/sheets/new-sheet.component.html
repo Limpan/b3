@@ -1,7 +1,13 @@
 <app-page-layout>
-    @for (row of rows; track row) {
+    <div class="m-4">
+        <button (click)="saveSheet()" class="bg-white hover:bg-gray-100 text-green-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Spara</button>
+    </div>
+
+    <div class="flex flex-row flex-wrap gap-2 m-2 max-w-lg">
+        @for (row of rows; track row) {
         <app-row [row]="row"></app-row>
-    }
+        }
+    </div>
 
     <app-keyboard (newItemEvent)="newItem($event)"></app-keyboard>
 </app-page-layout>

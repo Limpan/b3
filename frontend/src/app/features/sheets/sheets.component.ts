@@ -1,6 +1,5 @@
 import { NgFor } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { RowComponent } from "../../shared/components/row/row.component";
 import { Sheet } from '../../core/models/sheet.model';
 import { SheetService } from '../../core/services/sheet.service';
 import { PageLayoutComponent } from '../../shared/components/page-layout.component';
@@ -9,7 +8,7 @@ import { PageLayoutComponent } from '../../shared/components/page-layout.compone
     selector: 'app-sheets',
     standalone: true,
     templateUrl: './sheets.component.html',
-    imports: [NgFor, RowComponent, PageLayoutComponent]
+    imports: [NgFor, PageLayoutComponent]
 })
 export class SheetsComponent implements OnInit {
   sheets: Sheet[] = []

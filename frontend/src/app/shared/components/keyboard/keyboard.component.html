@@ -1,5 +1,5 @@
-<div class="m-4 max-w-md">
-    @if (input.length === 0) {
+<div class="m-4 max-w-lg ">
+    @if (state === 'letter') {
     <div class="grid grid-cols-4 grid-rows-5 gap-2">
         @for(letter of letters; track letter) {
         <button
@@ -10,24 +10,131 @@
         }
     </div>
     }
-    @else {
+    @else if (state === 'number') {
     <div class="flex flex-col gap-2">
-        @for(value of alternatives; track value) {
-        <button
-            class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
-            (click)="handleClickAlternative(value)">
-            {{ value }}
-        </button>
-        }
-        <div class="flex flex-row gap-2">
+        <div class="grid grid-cols-4 grid-rows-1 gap-2">
             <div
-                class="w-1/4 bg-white text-gray-800 font-semibold py-2 px-4 border-b-2 border-gray-200 rounded text-center">
+                class="row-start-1 col-start-2 col-span-2 bg-white text-gray-800 font-semibold py-2 px-4 border-b-2 border-gray-200 rounded text-center">
                 {{ input }}</div>
             <button
-                class="w-3/4 bg-white hover:bg-gray-100 text-red-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+                class="row-start-1 col-start-4 bg-white hover:bg-gray-100 text-red-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
                 (click)="handleReset()">
                 Cancel
             </button>
+        </div>
+        <div class="flex flex-col flex-wrap gap-2 overflow-scroll">
+            @for(value of alternatives; track value) {
+            <button
+                class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+                (click)="handleClickAlternative(value)">
+                {{ value }}
+            </button>
+            }
+        </div>
+    </div>
+    }
+    @else if (state === 'amount') {
+    <div class="grid grid-cols-4 grid-rows-5 gap-2">
+        <button
+            class="col-start-1 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+            (click)="handleSwitch()">
+            ...
+        </button>
+        <div
+        class="col-start-2 col-span-2 bg-white text-gray-800 font-semibold py-2 px-4 border-b-2 border-gray-200 rounded text-center">
+        {{ amount }}</div>
+        <button
+            class="col-start-4 bg-white hover:bg-gray-100 text-red-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+            (click)="handleReset()">
+            Cancel
+        </button>
+        @for(value of amountSuggestValues; track value) {
+        <button
+            class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+            (click)="handleClickAmountAlternative(value.toString())">
+            {{ value }}
+        </button>
+        }
+    </div>
+    }
+    @else if (state === 'pad') {
+    <div class="flex flex-col gap-2">
+        <div class="grid grid-cols-4 grid-rows-1 gap-2">
+            <button
+                class="col-start-1 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+                (click)="handleSwitch()">
+                ...
+            </button>
+            <div
+                class="col-start-2 col-span-2 bg-white text-gray-800 font-semibold py-2 px-4 border-b-2 border-gray-200 rounded text-center">
+                {{ amount }}</div>
+            <button
+                class="col-start-4 bg-white hover:bg-gray-100 text-red-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+                (click)="handleReset()">
+                Cancel
+            </button>
+        </div>
+        <div class="grid grid-cols-3 grid-rows-4 gap-2">
+            <button 
+                class="row-start-1 col-start-1 bg-white hover:bg-gray-100font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+                (click)="handleClickNumber(1)">
+                1
+            </button>
+            <button 
+                class="row-start-1 col-start-2 bg-white hover:bg-gray-100 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+                (click)="handleClickNumber(2)">
+                2
+            </button>
+            <button 
+                class="row-start-1 col-start-3 bg-white hover:bg-gray-100 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+                (click)="handleClickNumber(3)">
+                3
+            </button>
+            <button 
+                class="row-start-2 col-start-1 bg-white hover:bg-gray-100 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+                (click)="handleClickNumber(4)">
+                4
+            </button>
+            <button 
+                class="row-start-2 col-start-2 bg-white hover:bg-gray-100 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+                (click)="handleClickNumber(5)">
+                5
+            </button>
+            <button 
+                class="row-start-2 col-start-3 bg-white hover:bg-gray-100 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+                (click)="handleClickNumber(6)">
+                6
+            </button>
+            <button 
+                class="row-start-3 col-start-1 bg-white hover:bg-gray-100 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+                (click)="handleClickNumber(7)">
+                7
+            </button>
+            <button 
+                class="row-start-3 col-start-2 bg-white hover:bg-gray-100 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+                (click)="handleClickNumber(8)">
+                8
+            </button>
+            <button 
+                class="row-start-3 col-start-3 bg-white hover:bg-gray-100 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+                (click)="handleClickNumber(9)">
+                9
+            </button>
+            <button 
+                class="row-start-4 col-start-2 bg-white hover:bg-gray-100 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+                (click)="handleClickNumber(0)">
+                0
+            </button>
+            <button 
+                class="row-start-4 col-start-1 bg-white hover:bg-gray-100 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+                (click)="handleClickErase()">
+                Erase
+            </button>
+            <button 
+                class="row-start-4 col-start-3 bg-white hover:bg-gray-100 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+                (click)="handleClickEnter()">
+                Enter
+            </button>            
         </div>
     </div>
     }

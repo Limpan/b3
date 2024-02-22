@@ -1,4 +1,19 @@
+from datetime import datetime
 from pydantic import BaseModel
+
+
+class EventBase(BaseModel):
+    event_start: datetime
+    event_end: datetime
+    signup_start: datetime
+    signup_end: datetime
+
+
+class Event(EventBase):
+    id: int
+
+    class Config:
+        from_attributes = True
 
 
 class RowBase(BaseModel):
@@ -18,8 +33,7 @@ class Row(RowBase):
 
 
 class SheetBase(BaseModel):
-    name: str
-
+    pass
 
 class SheetCreate(SheetBase):
     rows: list[RowCreate]
@@ -27,6 +41,7 @@ class SheetCreate(SheetBase):
 
 class Sheet(SheetBase):
     id: int
+    name: str
     rows: list[Row]
 
     class Config:

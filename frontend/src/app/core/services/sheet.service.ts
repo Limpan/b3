@@ -25,4 +25,8 @@ export class SheetService {
   getSheet(id: number): Observable<Sheet> {
     return this.http.get<Sheet>(this.apiUrl + '/sheets/' + id);
   }
+
+  createSheet(sheet: Omit<Sheet, "id">): Observable<Sheet> {
+    return this.http.post<Sheet>(this.apiUrl + '/sheets/', sheet)
+  }
 }

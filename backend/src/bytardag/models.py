@@ -1,8 +1,33 @@
 import pendulum
-from sqlalchemy import Column, DateTime, ForeignKey, Integer, String
+from sqlalchemy import Boolean, Column, DateTime, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 from .database import Base
 
+
+class Event(Base):
+    __tablename__ = "events"
+
+    id = Column(Integer(), primary_key=True)
+    event_start = Column(DateTime())
+    event_end = Column(DateTime())
+    signup_start = Column(DateTime())
+    signup_end = Column(DateTime())
+    active = Column(Boolean(), default=False)
+    next_sheet_id = Column(Integer(), default=0)
+
+    seats = relationship("Seat", backref="event", lazy="dynamic")
+
+    def __repr__(self):
+        return "<Event {} ({})>".format(self.id, self.event_start)
+
+
+class Seat(Base):
+    __tablename__ = "seats"
+
+    id = Column(Integer(), primary_key=True)
+    
+
+    event_id = Column(Integer(), ForeignKey("events.id"))
 
 class Sheet(Base):
     __tablename__ = "sheets"

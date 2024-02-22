@@ -17,13 +17,17 @@ router = APIRouter(
 
 @router.post("/", response_model=schemas.Sheet)
 def create_sheet(sheet: schemas.SheetCreate, db: Session = Depends(get_db)):
-    db_sheet = models.Sheet(name=sheet.name)
-    db_sheet.rows = [models.Row(seller=row.seller, amount=row.amount) for row in sheet.rows]
+    with db.begin():
+        event = db.query(models.Event).filter_by(active = True).first()
+        event.next_sheet_id = models.Event.counter + 1
 
-    db.add(db_sheet)
-    db.commit()
-    db.refresh(db_sheet)
-    return db_sheet
+        db_sheet = models.Sheet(name=event.next_sheet_id)
+        db_sheet.rows = [models.Row(seller=row.seller, amount=row.amount) for row in sheet.rows]
+
+        db.add(db_sheet)
+        db.commit()
+        db.refresh(db_sheet)
+        return db_sheet
 
 @router.get("/", response_model=list[schemas.Sheet])
 def read_sheets(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):

@@ -3,6 +3,7 @@ import { PageLayoutComponent } from '../../shared/components/page-layout.compone
 import { RowComponent } from './row.component';
 import { KeyboardComponent } from '../../shared/components/keyboard/keyboard.component';
 import { Row } from '../../core/models/row.model';
+import { SheetService } from '../../core/services/sheet.service';
 
 @Component({
   selector: 'app-new-sheet',
@@ -11,12 +12,18 @@ import { Row } from '../../core/models/row.model';
   templateUrl: './new-sheet.component.html'
 })
 export class NewSheetComponent {
-  rows: Row[] = [
-    {seller: "X-07", amount: 25}
-  ]
+  rows: Row[] = []
 
-  newItem(item: string) {
+  constructor(private sheetService: SheetService) {}
+
+  newItem(item: Row) {
     console.log({item})
-    this.rows.push({seller: item, amount: 25})
+    this.rows.push(item)
+  }
+
+  saveSheet() {
+    console.log('Save sheet.')
+
+    this.sheetService.createSheet({rows: this.rows}).subscribe((sheet) => console.log({sheet}));
   }
 }
